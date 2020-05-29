@@ -1,6 +1,7 @@
 package app.gui;
 
 import app.controller.Controller;
+import app.controller.events.EventBus;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
@@ -43,8 +44,10 @@ public class LoginView extends GridPane {
         add(messageLabel, 1, 3);
         
         //oživit ćemo ih preko Controller
-        loginButton.setOnAction(Controller.getInstance().getEventBus().getLoginEvent());
-        cancelButton.setOnAction(Controller.getInstance().getEventBus().getCancelEvent());
+        Controller controller = Controller.getInstance();
+        EventBus eventBus = controller.getEventBus();
+        loginButton.setOnAction(eventBus.getLoginEvent());
+        cancelButton.setOnAction(eventBus.getCancelEvent());
     }
 
     public TextField getUsernameTextField() {

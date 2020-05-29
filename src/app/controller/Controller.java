@@ -10,7 +10,7 @@ import javafx.stage.Stage;
 /**
  * SINGLETON
  *
- * @author Grupa2
+ * @author emir
  */
 public class Controller {
 

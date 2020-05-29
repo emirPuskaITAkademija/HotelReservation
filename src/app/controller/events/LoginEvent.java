@@ -23,23 +23,21 @@ public class LoginEvent implements EventHandler<ActionEvent> {
             loginView.getMessageLabel().setText(Constants.EMPTY_USERNAME_PASSWORD_NOT_ALLOWED);
             return;
         }
-        //ferida.bobar
-        //ferida123
         User user = FacadeFactory.getFacade().login(username, password);
         if(user == null){
             loginView.getMessageLabel().setText(Constants.BAD_USERNAME_PASSWORD_COMBINATION);
-        }else{//user !=null
-            //ferida.bobar ferida123
-            //kanita.muzaferija kanita123
-            BorderPane view;
-            if("admin".equals(user.getIdPrivilege().getName())){
+        }else{
+            BorderPane view;//BorderLayout + JPanel = BorderPane
+            Controller.getInstance().setLoggedUser(user);
+            //ADMINISTRATOR
+            if(Constants.ADMIN.equals(user.getIdPrivilege().getName())){
                 view = new AdminView();
                 Controller.getInstance().setAdminView((AdminView)view);
                 Controller.getInstance().getPrimaryStage().setTitle("Admin panel: " + user.getName()+" "+user.getSurname());
             }else{
                 view = new UserView();
                 Controller.getInstance().setUserView((UserView) view);
-                Controller.getInstance().getPrimaryStage().setTitle("Korisnički panel HMS:" + user.getName()+" " + user.getSurname());
+                Controller.getInstance().getPrimaryStage().setTitle("Panel :" + user.getName()+" " + user.getSurname());
             }
             Scene scene = new Scene(view, 650, 300);
             Controller.getInstance().getPrimaryStage().setScene(scene);

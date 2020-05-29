@@ -134,7 +134,7 @@ public class User implements Serializable {
 
     @Override
     public String toString() {
-        return "app.business.model.User[ id=" + id + " ]";
+        return name +" " + surname;
     }
 
 }
